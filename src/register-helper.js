@@ -1,12 +1,14 @@
 'use strict';
 
-function registerHelper(Handlebars, listitems) {
+function registerHelper(patternlab, Handlebars) {
   Handlebars.registerHelper('listitems', function(options) {
     let html = '';
-    let items = listitems[options.hash.size];
-    items.forEach(function(item) {
-      console.log(item)
-      html = html + options.fn(item)
+    let listitems = patternlab.listitems[options.hash.size];
+    listitems.forEach(function(listitem) {
+      if (patternlab.config.debug) {
+        console.log(listitem);
+      }
+      html = html + options.fn(listitem)
     })
     return html;
   });

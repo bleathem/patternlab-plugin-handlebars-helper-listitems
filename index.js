@@ -9,12 +9,11 @@ const fs = require('fs-extra'),
   registerHelper = require('./src/register-helper');
 
 function onPatternlabBuildGlobalDataEnd(patternlab) {
-  console.log('******** onPatternlabBuildGlobalDataEnd');
-  registerHelper(patternlab.engines['handlebars'].engine, patternlab.listitems);
-}
-
-function onPatternlabPatternIterationEnd(patternlab) {
-  console.log('******** onPatternlabBuildGlobalDataEnd');
+  if (patternlab.config.debug) {
+    console.log('******** onPatternlabBuildGlobalDataEnd');
+  }
+  let Handlebars = patternlab.engines['handlebars'].engine;
+  registerHelper(patternlab, Handlebars);
 }
 
 /**
@@ -25,7 +24,6 @@ function onPatternlabPatternIterationEnd(patternlab) {
 function registerEvents(patternlab) {
   //register our handler at the appropriate time of execution
   patternlab.events.on('patternlab-build-global-data-end', onPatternlabBuildGlobalDataEnd);
-  patternlab.events.on('patternlab-pattern-iteration-end', onPatternlabPatternIterationEnd);
 }
 
 /**
