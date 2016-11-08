@@ -1,6 +1,6 @@
 {
   "name": "plugin-node-handlebars-helper-listitems",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A handlebars plugin for listitems",
   "main": "index.js",
   "scripts": {
